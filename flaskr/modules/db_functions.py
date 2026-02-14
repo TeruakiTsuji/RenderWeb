@@ -5,7 +5,7 @@ from ..import global_value as g
 from . import etc_date
 from . import etc_functions
 
-DATABASE = "storage.sqlite"
+DATABASE = "mcup.db"
 
 def next_all_lst():
     yyyy = "2026"
