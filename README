@@ -1,0 +1,11 @@
+
+python -m flask run -h 0.0.0.0 -p 8080
+
+5276@i-system.co.jp
+PassWord2026
+
+export FLASK_ENV=production
+export SECRET_KEY="my_strong_secret"
+export DATABASE_URI="login.db"
+
+export FLASK_APP=flaskr/__init__.py
