@@ -1,0 +1,31 @@
+{% extends "common/base.html" %}
+
+{% block title %}メモ - My App{% endblock %}
+
+{% block content %}
+<h1>メモ</h1>
+<div id="top" align="right"><a href="#bottom">▼ページ後尾</a></div>
+<form action="/memo_lst" method="push">
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80FF80">
+        <th>&nbsp;#&nbsp;</th>
+        <th>&nbsp;日付&nbsp;</th>
+        <th>&nbsp;時間&nbsp;</th>
+        <th>&nbsp;タイトル&nbsp;</th>
+        <th>&nbsp;内容&nbsp;</th>
+    </tr>
+    {% for item in memo_lst %}
+    <tr>
+        <td align="center">{{loop.index}}</td>
+        <td align="center">{{item['dt']}}</td>
+        <td align="center">{{item['tm']}}</td>
+        <td align="center">{{item['title']}}</td>
+        <td align="center">{{item['memo']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br/>
+<p>&nbsp;<input type="submit" value="決定する"/></p>
+</form>
+<div id="bottom" align="right"><a href="#top">▲ページ先頭</a></div>
+{% endblock %}

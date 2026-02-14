@@ -1,0 +1,70 @@
+{% extends "common/base.html" %}
+
+{% block title %}ホーム - My App{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <h2>{{g.Cup_Name}}へようこそ</h2>
+    <img src="{{ url_for('static', filename='images/mainImg.jpg') }}"  width="350">
+    <ol style="word-wrap:break-word;">
+      <li>ご参加の場合は、辻(tsuji@i-system.co.jp)またはアイ・システム(株)社員までご連絡ください。</li>
+      <li>会費は一律8,000円。会費のうち、1,000円分を賞品に還元します。例：優勝 5,000円、準優勝 3,000円、第3位 2,000円、その他跳び賞</li>
+      <li>競技方法はローカルHDCP(過去1年の平均スコア-72)または新ぺり(過去1年以内に3回未満の参加)</li>
+      <li>松崎杯100回記念大会は2025年8月23日(土)に開催されました。次回記念大会は110回です。</li>
+    </ol>
+  </div>
+</div>
+<br/>
+<h4>2026年開催日一覧</h4>
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80FF80">
+        <th>&nbsp;#&nbsp;</th>
+        <th align="center">&nbsp;タイトル&nbsp;</th>
+        <th align="center">&nbsp;開催日&nbsp;</th>
+        <th>&nbsp;開催地&nbsp;</th>
+        <th align="center">&nbsp;予約数&nbsp;</th>
+    </tr>
+    {% for item in nexts %}
+    <tr>
+      {% if loop.index < 2 %}
+          <td align="right" style="color:gray">{{loop.index}}</td>
+          <td align="center" style="color:gray">&nbsp;{{item['title']}}&nbsp;</td>
+          <td align="center" style="color:gray">&nbsp;{{item['jp_date']}}&nbsp;</td>
+          <td style="color:gray">&nbsp;{{item['place']}}&nbsp;</td>
+          <td align="center" style="color:gray">&nbsp;{{item['pairs']}}&nbsp;</td>
+      {% else %}
+        {% if loop.index == 6 %}
+          <td align="right"><b>{{loop.index}}</b></td>
+          <td align="center">&nbsp;<b>{{item['title']}}</b>&nbsp;</td>
+          <td align="center">&nbsp;<b>{{item['jp_date']}}</b>&nbsp;</td>
+          <td>&nbsp;<b>{{item['place']}}</b>&nbsp;</td>
+          <td align="center">&nbsp;<b>{{item['pairs']}}</b>&nbsp;</td>
+        {% else %}
+          <td align="right">{{loop.index}}</td>
+          <td align="center">&nbsp;{{item['title']}}&nbsp;</td>
+          <td align="center">&nbsp;{{item['jp_date']}}&nbsp;</td>
+          <td>&nbsp;{{item['place']}}&nbsp;</td>
+          <td align="center">&nbsp;{{item['pairs']}}&nbsp;</td>
+        {% endif %}
+      {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+<br/>
+{% if userID is not none %}
+<p><h4>松崎杯105回優勝者</h4></p>
+<a href="{{ url_for('static', filename='images/20260117.jpg') }}" data-lightbox="group"><img src="{{ url_for('static', filename='images/20260117.jpg') }}" alt="" width="350"></a>
+<br/>
+<p><h4>松崎杯100回記念大会集合写真</h4></p>
+<a href="{{ url_for('static', filename='images/20250823_1.jpg') }}" data-lightbox="group"><img src="{{ url_for('static', filename='images/20250823_1.jpg') }}" alt="" width="350"></a>
+<br/>
+{% endif %}
+<br/>
+<p><h4>現在時刻</h4></p>
+<canvas id="clock" width="400" height="400"></canvas>
+<script src="{{ url_for('static', filename='js/analogClock.js') }}"></script>
+<script>
+  myFunction();
+</script>
+{% endblock %}

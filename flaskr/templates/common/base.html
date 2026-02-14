@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mcup</title>
+    <meta name="application-name" content="mcup">
+    <meta name="google-site-verification" content="">
+    <!-- include stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/web2py-bootstrap4.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/accordion.css') }}"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/images/favicon.png') }}">
+    <script src="{{ url_for('static', filename='js/modernizr-2.8.3.min.js') }}"></script>
+    <!-- Favicons -->
+    <script type="text/javascript"><!--
+    // These variables are used by the web2py_ajax_init function in web2py_ajax.js (which is loaded below).
+    var w2p_ajax_confirm_message = "Are you sure you want to delete this object?";
+    var w2p_ajax_disable_with_message = "Working...";
+    var w2p_ajax_date_format = "%Y-%m-%d";
+    var w2p_ajax_datetime_format = "%Y-%m-%d %H:%M:%S";
+    var ajax_error_500 = "An error occured, please \u003ca href=\"/mcup/default/index\"\u003ereload\u003c/a\u003e the page";
+
+    //--></script>
+
+    <meta name="author" content="Your Name &lt;you@example.com&gt;" />
+    <meta name="description" content="a cool new app" />
+    <meta name="keywords" content="&lt;map object at 0x76507a09a950&gt;" />
+    <meta name="generator" content="Web2py Web Framework" />
+    <script src="{{ url_for('static', filename='js/jquery.js') }}" type="text/javascript"></script>
+    <link href="{{ url_for('static', filename='css/calendar.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ url_for('static', filename='js/calendar.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/web2py.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/chart.min.js') }}" type="text/javascript"></script>
+    <style>
+        body {
+            /*
+            background-image: url('../static/images/green.jpg');
+            background-repeat: repeat;
+            */
+            /* 他のCSS設定 */
+        }
+    </style>
+    <!-- CSSファイルを読み込む場合 -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+</head>
+<body>
+    <header>
+    <div class="w2p_flash alert alert-dismissable">{{g.Cup_Name}}へようこそ!</div>
+    <!-- Navbar ======================================= -->
+    <nav class="navbar navbar-light navbar-expand-md bg-faded bg-dark navbar-dark justify-content-center">
+       <a href="/" class="navbar-brand d-flex w-50 mr-auto">{{g.Cup_Name}}</a>
+       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="navbar-collapse collapse w-100" id="navbarNavDropdown">
+         <ul class="navbar-nav w-100 justify-content-center">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">お知らせ</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/pairs_lst">組合せ</a>
+              <a class="dropdown-item" href="/pairs_upd">組合せ修正</a>
+              <a class="dropdown-item" href="/pay_upd">支払い</a>
+            </div>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/victor_lst">成績一覧</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/ymd_lst">直成績績</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/year_lst">今年の成績</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/award_lst">商品例</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/hdcp_lst">ﾛｰｶﾙHDCP</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/menu_lst">軽食ﾒﾆｭｰ</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">その他競技</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/victor_lst?kind=1">２１会</a>
+              <a class="dropdown-item" href="/victor_lst?kind=3">番外編</a>
+            </div>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/bg_lst">ﾍﾞｽﾄBG</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">その他</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/next_upd">次回修正</a>
+              <a class="dropdown-item" href="/memo_lst">メモ</a>
+              <a class="dropdown-item" href="/text_pairing_lst">組合せ(テキスト)</a>
+            </div>
+          </li>
+        </ul>
+        
+        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% if userID is none %}
+                サイン
+              {% else %}
+                {{userID}}
+              {% endif %}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              {% if userID is none %}
+                <a class="dropdown-item" href="/login">サインイン</a>
+              {% else %}
+                <a class="dropdown-item" href="/logout">サインアウト</a>
+              {% endif %}
+              <a class="dropdown-item" href="/add">登録</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js" defer type="text/javascript"></script>
+    </header>
+
+    <main>
+        <!-- 子テンプレートの内容がここに入る -->
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+    </div>
+
+     <!-- this is default footer -->
+    <footer class="footer container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="copyright pull-left">Copyright &#169; 2026 i-system Co.,Ltd. All Rights Reserved.</div>
+          <div id="poweredBy" class="pull-right">
+            Powered by
+            <a href="https://www.i-system.co.jp/">i-system</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+    <!-- The javascript =============================== -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/web2py-bootstrap4.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/accordion.js') }}"></script>
+    </footer>
+</body>
+</html>

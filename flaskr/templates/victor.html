@@ -1,0 +1,32 @@
+{% extends "common/base.html" %}
+
+{% block title %}成績一覧 - My App{% endblock %}
+
+{% block content %}
+<h1>{{kindNm}}成績一覧</h1>
+<div id="top" align="right"><a href="#bottom">▼ページ後尾</a></div>
+
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80FF80">
+        <th>&nbsp;#&nbsp;</th>
+        <th align="center">&nbsp;タイトル&nbsp;</th>
+        <th align="center">&nbsp;開催日&nbsp;</th>
+        <!--
+        <th>&nbsp;開催地&nbsp;</th>
+        -->
+        <th align="center">&nbsp;優勝&nbsp;</th>
+    </tr>
+    {% for item in victor_lst %}
+    <tr>
+        <td align="center">{{loop.index}}</td>
+        <td align="center"><a href="/ymd_lst?ymd={{item['open_dt']}}&kind={{kind}}">{{item['name']}}</a></td>
+        <td align="center">{{item['jp_date']}}</td>
+        <!--
+        <td align="center">{{item['place']}}</td>
+        -->
+        <td align="center">{{item['victor_nm']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<div id="bottom" align="right"><a href="#top">▲ページ先頭</a></div>
+{% endblock %}

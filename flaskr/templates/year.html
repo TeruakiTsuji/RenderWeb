@@ -1,0 +1,57 @@
+{% extends "common/base.html" %}
+
+{% block title %}年間成績 - My App{% endblock %}
+
+{% block content %}
+<h1>{{year}}年成績</h1>
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80ff80">
+        <th>&nbsp;#&nbsp;</th>
+        <th>&nbsp;タイトル&nbsp;</th>
+        <th>&nbsp;開催日&nbsp;</th>
+        <th>&nbsp;優勝者&nbsp;</th>
+    </tr>
+    {% for item in places %}
+    <tr>
+        <td align="center">{{loop.index}}</td>
+        <td align="center"><a href="/mcup/default/lst_ymd?ymd={{item['open_dt']}}">{{item['name']}}</a></td>
+        <td align="center">{{item['jp_date']}}</td>
+        <td align="center">{{item['victor_nm']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/year_lst?next=1&kind={{kind}}&year={{prev_year}}">&#9664 前年 </a>
+<a href="/year_lst?next=2&kind={{kind}}&year={{next_year}}">翌年 &#9654 </a>
+<div id="top" align="right"><a href="#bottom">▼ページ後尾</a></div>
+<h3>ポイント一覧</h3>
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80ff80">
+        <th>&nbsp;#&nbsp;</th>
+        <th>&nbsp;名前&nbsp;</th>
+        <th>&nbsp;ポイント&nbsp;</th>
+        <th>&nbsp;1位&nbsp;</th>
+        <th>&nbsp;2位&nbsp;</th>
+        <th>&nbsp;3位&nbsp;</th>
+        <th>&nbsp;出場&nbsp;</th>
+    </tr>
+    {% for item in points %}
+    <tr>
+        <td align="center">{{loop.index}}</td>
+        <td align="center"><a href="/personal_lst?name_num={{item['name_num']}}">{{item['name_nm']}}</a></td>
+        <td align="center">{{item['point']}}</td>
+        <td align="center">{{item['mp1']}}</td>
+        <td align="center">{{item['mp2']}}</td>
+        <td align="center">{{item['mp3']}}</td>
+        <td align="center">{{item['cnt']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+ポイントの解説
+<ul>
+    <li>1位 11ポイント</li>
+    <li>2位  8ポイント</li>
+    <li>3位  6ポイント</li>
+    <li>参加 1ポイント</li>
+</ul>
+<div id="bottom" align="right"><a href="#top">▲ページ先頭</a></div>
+{% endblock %}

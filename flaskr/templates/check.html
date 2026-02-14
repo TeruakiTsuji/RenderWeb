@@ -1,0 +1,15 @@
+{% extends "common/base.html" %}
+
+{% block title %}確認画面 - My App{% endblock %}
+
+{% block content %}
+<h2>確認画面</h2>
+<!-- 以下はpタグで表示しているが、文字が表示できるタグであれば何でも良い -->
+<p>&nbsp;{{ user.userID }}</p>
+<p>&nbsp;{{ '●' * user.password|length }}</p>
+<p>&nbsp;{{ user.mail }}</p>
+
+<form action="{{ url_for('comp')}}" method="post">
+  &nbsp;<input type="submit" value="登録">
+</form>
+{% endblock %}

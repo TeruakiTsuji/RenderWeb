@@ -1,0 +1,50 @@
+{% extends "common/base.html" %}
+
+{% block title %}成績一覧 - My App{% endblock %}
+
+{% block content %}
+<h1>成績発表時のメニュー</h1>
+<p>・開催日：{{next_info['jp_date']}}</p>
+<p>・締め日：{{closing_dt}}</p>
+<div id="top" align="right"><a href="#bottom">▼ページ後尾</a></div>
+<form action="/menu_lst" method="push">
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80FF80">
+        <th>&nbsp;#&nbsp;</th>
+        <th>&nbsp;氏名&nbsp;</th>
+        <th>&nbsp;ﾊﾟﾝｹｰｷｾｯﾄ&nbsp;</th>
+        <th>&nbsp;ｺｰﾋｰとｱｲｽ&nbsp;</th>
+        <th>&nbsp;ｺｰﾋｰのみ&nbsp;</th>
+    </tr>
+    {% set ns = namespace(cnt1=0, cnt2=0, cnt3=0) %}
+    {% for item in menu_lst %}
+    <tr>
+        <td align="center">{{loop.index}}</td>
+        <td align="center">{{item['name_nm']}}</td>
+        {% if item['menu_num'] == 0 %}
+            <td align="center"><input type="radio" name="{{item['menu_nm']}}" value="0" checked><label></label></td>
+            {% set ns.cnt1 = ns.cnt1 + 1 %}
+        {% else %}
+            <td align="center"><input type="radio" name="{{item['menu_nm']}}" value="0"><label></label></td>
+        {% endif %}
+        {% if item['menu_num'] == 1 %}
+            <td align="center"><input type="radio" name="{{item['menu_nm']}}" value="1" checked><label></label></td>
+            {% set ns.cnt2 = ns.cnt2 + 1 %}
+        {% else %}
+            <td align="center"><input type="radio" name="{{item['menu_nm']}}" value="1"><label></label></td>
+        {% endif %}
+        {% if item['menu_num'] == 2 %}
+            <td align="center"><input type="radio" name="{{item['menu_nm']}}" value="2" checked><label></label></td>
+            {% set ns.cnt3 = ns.cnt3 + 1 %}
+        {% else %}
+            <td align="center"><input type="radio" name="{{item['menu_nm']}}" value="2"><label></label></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+&nbsp;ﾊﾟﾝｹｰｷｾｯﾄ:{{ns.cnt1}},&nbsp;ｺｰﾋｰとｱｲｽ:{{ns.cnt2}},&nbsp;ｺｰﾋｰのみ:{{ns.cnt3}}
+<p></p>
+<p><input type="submit" value="決定する"/></p>
+</form>
+<div id="bottom" align="right"><a href="#top">▲ページ先頭</a></div>
+{% endblock %}

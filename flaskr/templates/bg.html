@@ -1,0 +1,90 @@
+{% extends "common/base.html" %}
+
+{% block title %}ベストグロス - My App{% endblock %}
+
+{% block content %}
+<h1>倶楽部別ﾍﾞｽﾄｸﾞﾛｽ</h1>
+<div id="top" align="right"><a href="#bottom">▼ページ後尾</a></div>
+{% set ns = namespace(cnt1=0, cnt2=0, cnt3=0) %}
+<h3>■児玉カントリー倶楽部</h3>
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80FF80">
+        <th>&nbsp;#&nbsp;</th>
+        <th>&nbsp;ﾍﾞｽﾄ&nbsp;</th>
+        <th>&nbsp;開催日&nbsp;</th>
+        <th colspan="2">&nbsp;前半&nbsp;</th>
+        <th colspan="2">&nbsp;後半&nbsp;</th>
+        <th>&nbsp;ｽｺｱ&nbsp;</th>
+    </tr>
+    {% for item in bg_lst %}
+    {% if item['place'] == '児玉カントリー倶楽部' %}
+    {% set ns.cnt1 = ns.cnt1 + 1 %}
+    <tr>
+        <td align="center">{{ns.cnt1}}</td>
+        <td align="center">{{item['name_nm']}}</td>
+        <td><a href="/ymd_lst?ymd={{item['open_dt']}}">{{item['jp_date']}}</a></td>
+        <td align="center">{{item['cose1']}}</td>
+        <td align="center">{{item['score1']}}</td>
+        <td align="center">{{item['cose2']}}</td>
+        <td align="center">{{item['score2']}}</td>
+        <td align="center">{{item['gross']}}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+<br/>
+<h3>■東千葉カントリークラブ</h3>
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80FF80">
+        <th>&nbsp;#&nbsp;</th>
+        <th>&nbsp;ﾍﾞｽﾄ&nbsp;</th>
+        <th>&nbsp;開催日&nbsp;</th>
+        <th colspan="2">&nbsp;前半&nbsp;</th>
+        <th colspan="2">&nbsp;後半&nbsp;</th>
+        <th>&nbsp;ｽｺｱ&nbsp;</th>
+    </tr>
+    {% for item in bg_lst %}
+    {% if item['place'] == '東千葉カントリークラブ' %}
+    {% set ns.cnt2 = ns.cnt2 + 1 %}
+    <tr>
+        <td align="center">{{ns.cnt2}}</td>
+        <td align="center">{{item['name_nm']}}</td>
+        <td><a href="/ymd_lst?ymd={{item['open_dt']}}">{{item['jp_date']}}</a></td>
+        <td align="center">{{item['cose1']}}</td>
+        <td align="center">{{item['score1']}}</td>
+        <td align="center">{{item['cose2']}}</td>
+        <td align="center">{{item['score2']}}</td>
+        <td align="center">{{item['gross']}}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+<br/>
+<h3>■霞ヶ関カンツリー倶楽部</h3>
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80FF80">
+        <th>&nbsp;#&nbsp;</th>
+        <th>&nbsp;ﾍﾞｽﾄ&nbsp;</th>
+        <th>&nbsp;開催日&nbsp;</th>
+        <th colspan="2">&nbsp;前半&nbsp;</th>
+        <th colspan="2">&nbsp;後半&nbsp;</th>
+        <th>&nbsp;ｽｺｱ&nbsp;</th>
+    </tr>
+    {% for item in bg_lst %}
+    {% if item['place'] == '霞ヶ関カンツリー倶楽部' %}
+    {% set ns.cnt3 = ns.cnt3 + 1 %}
+    <tr>
+        <td align="center">{{ns.cnt3}}</td>
+        <td align="center">{{item['name_nm']}}</td>
+        <td><a href="/ymd_lst?ymd={{item['open_dt']}}">{{item['jp_date']}}</a></td>
+        <td align="center">{{item['cose1']}}</td>
+        <td align="center">{{item['score1']}}</td>
+        <td align="center">{{item['cose2']}}</td>
+        <td align="center">{{item['score2']}}</td>
+        <td align="center">{{item['gross']}}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+<div id="bottom" align="right"><a href="#top">▲ページ先頭</a></div>
+{% endblock %}

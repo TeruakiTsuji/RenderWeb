@@ -1,0 +1,126 @@
+.accordion_container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.accordion_title {
+  background-color: #daa520;
+  color: #fff;
+  font-size: 26px;
+  font-weight: bold;
+  padding: 20px 5%;
+  text-align: left;
+  position: relative;
+  z-index: +1;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+.accordion_container:nth-of-type(2) .accordion_title {
+    background-color: #dc143c;
+}
+.accordion_container:nth-of-type(3) .accordion_title {
+    background-color: #4682b4;
+} 
+.accordion_title:hover {
+  opacity: 0.8;
+}
+.icon_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  box-sizing: border-box;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transform-origin: center center;
+  transition-duration: 0.2s;
+}
+.icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transform-origin: center center;
+  transition-duration: 0.2s;
+  position: relative;
+}
+.accordion_title.open 
+.icon_wrap {
+  -webkit-transform: rotate(-360deg);
+  transform: rotate(-360deg);
+}
+.icon:before, .icon:after {
+  display: flex;
+  content: '';
+  background-color: #fff;
+  border-radius: 10px;
+  width: 18px;
+  height: 4px;
+  position: absolute;
+  top: 7px;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  transform-origin: center center;
+}
+.icon:before {
+  width: 4px;
+  height: 18px;
+  top: 0;
+  left: 7px;
+}
+.accordion_title.open 
+.icon_wrap .icon:before {
+  content: none;
+}
+.accordion_title.open 
+.icon_wrap .icon:after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.accordion_inner {
+  display: none;
+  padding: 20px 20px;
+  border-left: 2px solid #daa520;
+  border-right: 2px solid #daa520;
+  border-bottom: 2px solid #daa520;
+  box-sizing: border-box;
+}
+.accordion_container:nth-of-type(2) .accordion_inner {
+  border-left: 2px solid #dc143c;
+  border-right: 2px solid #dc143c;
+  border-bottom: 2px solid #dc143c;
+}
+.accordion_container:nth-of-type(3) .accordion_inner {
+  border-left: 2px solid #4682b4;
+  border-right: 2px solid #4682b4;
+  border-bottom: 2px solid #4682b4;
+}
+.ac_inner_wraper {
+  height: 3000px;
+}
+p.txt_a_ac {
+  margin: 0;
+}
+@media screen and (max-width: 1024px) {
+  .accordion_title {
+    font-size: 18px;
+  }
+  .icon_wrap {
+    width: 30px;
+    height: 30px;
+    margin-top: -15px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .accordion_title {
+    font-size: 16px;
+    text-align: left;
+    padding: 15px 60px 15px 15px;
+  }
+}

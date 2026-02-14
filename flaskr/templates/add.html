@@ -1,0 +1,28 @@
+{% extends "common/base.html" %}
+
+{% block title %}新規登録 - My App{% endblock %}
+
+{% block content %}
+ <h2>新規登録</h2>
+ {% if error %}
+  <p>&nbsp;{{ error }}</p>
+ {% endif %}
+ <!-- 以下の様に必ずname属性を記述すること。以下のコードの記述場所はどこでも良い -->
+ <form method="post" action="{{ url_for('check') }}">
+   <p>&nbsp;ユーザID
+   <input type="text" name="userID">
+   </p>
+   <p>&nbsp;パスワード
+   <input type="password" name="password1">
+   </p>
+   <p>&nbsp;確認用パスワード
+   <input type="password" name="password2">
+   </p>
+   <p>&nbsp;e-Mail
+   &nbsp;<input type="text" name="mail">
+   </p>
+   <p>
+   &nbsp;<input type="submit" value="確認">
+   </p>
+ </form>
+{% endblock %}

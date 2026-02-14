@@ -1,0 +1,18 @@
+{% extends "common/base.html" %}
+
+{% block title %}ログイン - My App{% endblock %}
+
+{% block content %}
+<h2>ログイン</h2>
+<form action="{{ url_for('top') }}" method="post">
+  <p>&nbsp;ユーザID
+  <input type="text" name="userID">
+  </p>
+  <p>&nbsp;パスワード
+  <input type="password" name="password">
+  </p>
+  &nbsp;<input type="submit" value="ログイン" class="loginBtn">
+  </p>
+</form>
+&nbsp;<a href="{{ url_for('add') }}">新規登録はこちら</a>
+{% endblock %}

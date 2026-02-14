@@ -1,0 +1,39 @@
+{% extends "common/base.html" %}
+
+{% block title %}成績一覧 - My App{% endblock %}
+
+{% block content %}
+<h1>{{place_info['name']}}</h1>
+<ul>
+<li>開催日:{{place_info['jp_date']}}</li>
+<li>開催地:{{place_info['place']}}</li>
+</ul>
+<div id="top" align="right"><a href="#bottom">▼ページ後尾</a></div>
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80FF80">
+        <th>&nbsp;順位&nbsp;</th>
+        <th>&nbsp;氏名&nbsp;</th>
+        <th>&nbsp;{{place_info['cose1']}}&nbsp;</th>
+        <th>&nbsp;{{place_info['cose2']}}&nbsp;</th>
+        <th>&nbsp;ｸﾞﾛｽ&nbsp;</th>
+        <th>&nbsp;ﾊﾝﾃﾞｨ&nbsp;</th>
+        <th>&nbsp;ﾈｯﾄ&nbsp;</th>
+    </tr>
+    {% for item in ymd_lst %}
+    <tr>
+        <td align="center">{{loop.index}}</td>
+        <td align="center"><a href="/lst_personal?name_num={{item['name_num']}}">{{item['name_nm']}}</a></td>
+        <td align="right">{{item['score1']}}</td>
+        <td align="right">{{item['score2']}}</td>
+        <td align="right">{{item['bg_mark']}}{{item['gross']}}</td>
+        <td align="right">{{item['hdcp']}}</td>
+        <td align="right">{{item['net']}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/ymd_lst?next=0&kind={{kind}}">&#9664&#9664 最初 </a>
+<a href="/ymd_lst?next=1&kind={{kind}}&ymd={{place_info['open_dt']}}">&#9664 前月 </a>
+<a href="/ymd_lst?next=2&kind={{kind}}&ymd={{place_info['open_dt']}}">翌月 &#9654 </a>
+<a href="/ymd_lst?next=-1&kind={{kind}}">最後 &#9654&#9654</a>
+<div id="bottom" align="right"><a href="#top">▲ページ先頭</a></div>
+{% endblock %}

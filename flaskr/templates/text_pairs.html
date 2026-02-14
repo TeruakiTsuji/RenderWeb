@@ -1,0 +1,49 @@
+{% extends "common/base.html" %}
+
+{% block title %}組み合わせ - My App{% endblock %}
+
+{% block content %}
+<h1>{{next_info['title']}}</h1>
+<ul>
+    <li>開催日：{{next_info['jp_date']}}</li>
+    <li>開催地：{{next_info['place']}}</li>
+    <li>予約数：{{next_info['pairs']}}組</li>
+    <li>ルール：混合競技(ﾛｰｶﾙﾊﾝﾃﾞｨ、新ﾍﾟﾘ)</li>
+    <li>参加数：{{person}}人</li>
+    <li>組み合わせは以下の通り</li>
+</ul>
+{% for item in pairs %}
+<h4>■{{loop.index}}組目 {{item['start_tm']}} {{item['cose1']}}⇒{{item['cose2']}}コース</h4>
+{% if item['name_nm1'] != '(空き)' %}
+  &nbsp;&nbsp;
+  {{item['menu1']}}
+  {{item['name_nm1']}}さん({{item['hdcp1']}})
+  <br/>
+{% endif %}
+{% if item['name_nm2'] != '(空き)' %}
+  &nbsp;&nbsp;
+  {{item['menu2']}}
+  {{item['name_nm2']}}さん({{item['hdcp2']}})
+  <br/>
+{% endif %}
+{% if item['name_nm3'] != '(空き)' %}
+  &nbsp;&nbsp;
+  {{item['menu3']}}
+  {{item['name_nm3']}}さん({{item['hdcp3']}})
+  <br/>
+{% endif %}
+{% if item['name_nm4'] != '(空き)' %}
+  &nbsp;&nbsp;
+  {{item['menu4']}}
+  {{item['name_nm4']}}さん({{item['hdcp4']}})
+  <br/>
+{% endif %}
+<br/>
+{% endfor %}
+<pre>
+※記号(名前の前)は、ラウンド終了後のメニューになります。
+〇：パンケーキセット
+●：コーヒーとアイス
+△：コーヒーのみ
+</pre>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "common/base.html" %}
+
+{% block title %}年間成績 - My App{% endblock %}
+
+{% block content %}
+<h1>ﾛｰｶﾙHDCP一覧</h1>
+<div id="top" align="right"><a href="#bottom">▼ページ後尾</a></div>
+表示：<a href="/hdcp_lst?detail=True">詳細</a>、<a href="/hdcp_lst">簡易</a>
+{% if detail is none %}
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80FF80">
+        <th>&nbsp;#&nbsp;</th>
+        <th>&nbsp;名前&nbsp;</th>
+        <th>&nbsp;平均&nbsp;</th>
+        <th>&nbsp;調整値&nbsp;</th>
+        <th>&nbsp;ﾊﾝﾃﾞｨ&nbsp;</th>
+    </tr>
+    {% for item in hdcp_lst %}
+        {% if item['num'] == 99 %}
+        <tr>
+        <td align="center">{{loop.index}}</td>
+        <td align="center"><a href="/personal_lst?name_num={{item['name_num']}}">{{item['name_nm']}}</a></td>
+        <td align="center">{{item['avr']}}</td>
+        <td align="center">{{item['adjust']}}</td>
+        <td align="center">{{item['hdcp']}}</td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+{% else %}
+<table border="1" cellspacing="0" cellpadding="0">
+    <tr bgcolor="#80FF80">
+        <th>&nbsp;名前&nbsp;</th>
+        <th>&nbsp;#&nbsp;</th>
+        <th>&nbsp;順位&nbsp;</th>
+        <th>&nbsp;ｽｺｱ&nbsp;</th>
+        <th>&nbsp;平均&nbsp;</th>
+        <th>&nbsp;調整値&nbsp;</th>
+        <th>&nbsp;ﾊﾝﾃﾞｨ&nbsp;</th>
+    </tr>
+    {% for item in hdcp_lst %}
+    <tr>
+        {% if item['num'] != 99 %}
+            {% if item['cnt'] == 1 %}
+                <td align="center">{{item['name_nm']}}</td>
+            {% else %}
+                <td align="center">〃</td>
+            {% endif %}
+            <td align="center">{{item['cnt']}}</td>
+            <td align="center">{{item['num']}}</td>
+            <td align="right">{{item['gross']}}</td>
+            <td align="center" colspan="3">{{item['jp_date']}}</td>
+        {% else %}
+            <td align="center" colspan="4">{{item['name_nm']}}</td>
+            <td align="center">{{item['avr']}}</td>
+            <td align="center">{{item['adjust']}}</td>
+            <td align="center">{{item['hdcp']}}</td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+表示：<a href="/hdcp_lst?detail=True">詳細</a>、<a href="/hdcp_lst">簡易</a>
+<div id="bottom" align="right"><a href="#top">▲ページ先頭</a></div>
+{% endblock %}
